@@ -1,0 +1,75 @@
+class Solution {
+  public:
+    // Function to return Breadth First Traversal of given graph.
+    //function takes no of vertices and adjacency list as input
+    vector<int> bfsOfGraph(int V, vector<int> adj[]) {
+        
+        vector<int> visited(V+1, 0); //V+1 size, initialize with 0
+        vector<int> bfs; //ans
+        
+        for(int i = 0; i < V; i++){
+            if(!visited[i]){
+                //bfs algo
+                queue<int> Q;
+                Q.push(i);
+                visited[i] = 1;
+                while(!Q.empty()){
+                    auto node = Q.front();
+                    Q.pop();
+                    bfs.push_back(node);
+                    
+                    for(auto it: adj[node]){
+                        if(!visited[it]){
+                        Q.push(it);
+                        visited[it] = 1;
+                        }
+                    }
+                }
+            }
+        }
+        return bfs;
+    }
+};
+
+
+
+//For just 1 Connected component
+
+// { Driver Code Starts
+#include <bits/stdc++.h>
+using namespace std;
+
+
+class Solution {
+  public:
+    // Function to return Breadth First Traversal of given graph.
+    //function takes no of vertices and adjacency list as input
+    vector<int> bfsOfGraph(int V, vector<int> adj[]) {
+        
+        vector<int> visited(V+1, 0); //V+1 size, initialize with 0
+        vector<int> bfs; //ans
+        
+        //for(int i = 0; i < V; i++){
+            int i = 0;
+            if(!visited[i]){
+                //bfs algo
+                queue<int> Q;
+                Q.push(i);
+                visited[i] = 1;
+                while(!Q.empty()){
+                    auto node = Q.front();
+                    Q.pop();
+                    bfs.push_back(node);
+                    
+                    for(auto it: adj[node]){
+                        if(!visited[it]){
+                        Q.push(it);
+                        visited[it] = 1;
+                        
+                    }
+                }
+            }
+        }
+        return bfs;
+    }
+};
