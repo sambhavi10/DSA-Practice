@@ -1,0 +1,43 @@
+
+class Solution {
+public:
+
+    bool checkBipartite(int i, vector<int> adj[], vector<int> &color){
+       
+        color[i] = 1;
+        queue<int> Q;
+        Q.push(i);
+        
+        while(!Q.empty()){
+            int node = Q.front();
+            Q.pop();
+            
+            for(auto it: adj[node]){
+                if(color[it] == -1){
+                    color[it] = 1 - color[node];
+                    Q.push(it);
+                }
+                else{
+                    if(color[it] == color[node])
+                        return false;
+                }
+        }
+    }
+    return true;
+}
+
+	bool isBipartite(int V, vector<int>adj[]){
+	    queue<int> Q;
+	    vector<int> color(V, -1);
+	    for(int i=0;i<V;i++){
+	        if(color[i] == -1){
+	            if(!checkBipartite(i, adj, color )){
+	                return false; //any of the component is not bipartite
+	            }
+	        }
+	    }
+	   
+        return true;
+	}
+
+};
