@@ -1,0 +1,24 @@
+class Solution{
+	public:
+	vector<int>AllPrimeFactors(int N) {
+	    vector<int> ans;
+	    int spf[N+1] = {0};
+	    for(int i=0;i<=N;i++){
+	        spf[i] = i;
+	    }
+	    for(int i=2;i*i<=N;i++){
+	        if(spf[i] == i){ //if unmarked, then move forward
+	            for(int j = i*i; j <= N; j += i){
+	                if(spf[j] == j){//agar pehle se marked mahi hai, then mark with this
+	                    spf[j] = i;
+	                }
+	            }
+	        }
+	    }
+	    while(N!=1){
+	        ans.push_back(spf[N]);
+	        N = N/spf[N];
+	    }
+	    return ans;
+	}
+};
