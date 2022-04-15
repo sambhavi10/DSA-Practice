@@ -1,0 +1,45 @@
+//NAIVE APPROACH
+//TRAVERSE THE LINKED LIST, KEEP A COUNTER TO COUNT THE NODES = O(N)
+//THEN TRAVERSE FOR COUNT/2 NODES, AND RETURN THE DATA FIELD OF THE LINKED LIST NODE - O(N/2)
+
+class Solution{
+    public:
+    /* Should return data of middle node. If linked list is empty, then  -1*/
+    int getMiddle(Node *head){
+        Node* temp = head;
+        int count = 0;
+        while(temp != NULL){
+            count++;
+            temp = temp->next;
+        }
+        int k = count/2;
+        temp = head;
+        for(int i=1; i<=k; i++){
+            temp = temp->next;
+        }
+        return temp->data;
+    }
+};
+
+//OPTIMIZED APPROACH
+//SLOW AND FAST POINTER APPROACH
+//SLOW MOVES BY 1
+//FAST MOVES BY 2, TILL IT REACHES NULL OR THE NEXT OF IT IS NULL
+//RETURN THE NODE POINTED BY THE SLOW POINTER, USKA DATA 
+
+class Solution{
+    public:
+    /* Should return data of middle node. If linked list is empty, then  -1*/
+    int getMiddle(Node *head){
+        Node* fast = head;
+        Node* slow = head;
+        while( fast != NULL && fast->next != NULL){
+            fast = fast->next->next;
+            slow = slow->next;
+        }
+        return slow->data;
+        
+        
+        
+    }
+};
