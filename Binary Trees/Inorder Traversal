@@ -1,0 +1,19 @@
+
+class Solution {
+  public:
+    // Function to return a list containing the inorder traversal of the tree.
+    void inorderTraversal(Node* root, vector<int> &ans){
+    
+        if(root == NULL)
+            return;
+        inorderTraversal(root->left,ans);
+        ans.push_back(root->data);
+        inorderTraversal(root->right,ans);
+}
+
+    vector <int> inOrder(Node* root){
+        vector<int> v;
+        inorderTraversal(root, v);
+        return v;
+}
+};
