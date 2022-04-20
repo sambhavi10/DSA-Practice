@@ -1,0 +1,28 @@
+class Solution {
+public:
+    
+    void FindComb(int index, vector<int> &candidates, int target, vector<vector<int>> &ans, vector<int> &ds){
+        if(target == 0){
+            sort(ans.begin(), ans.end());
+            ans.push_back(ds);
+            return;
+        }
+        if(index == candidates.size() || target < 0)
+            return;
+        if(candidates[index] <= target){
+            ds.push_back(candidates[index]);
+            //sort(ds.begin(), ds.end());
+            FindComb(index, candidates, target-candidates[index], ans, ds);
+            ds.pop_back(); //backtracking step
+        }
+        FindComb(index+1, candidates, target, ans, ds);
+    }
+    
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        vector<vector<int>> ans;
+        vector<int> ds;
+        sort(candidates.begin(), candidates.end());
+        FindComb(0, candidates, target, ans, ds);
+        return ans;
+    }
+};
