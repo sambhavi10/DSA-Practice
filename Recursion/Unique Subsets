@@ -1,0 +1,24 @@
+class Solution{
+    
+    public:
+    
+    void findAllSubsets(int index, vector<int> &arr, vector<int> &ds, vector<vector<int>> &ans){
+        ans.push_back(ds); //deep copy
+        for(int i=index; i<arr.size(); i++){
+            if(i != index && arr[i] == arr[i-1])
+                continue; //do not pick
+            ds.push_back(arr[i]);
+            findAllSubsets(i+1, arr, ds, ans);
+            ds.pop_back();
+        }
+    }
+    
+    //Function to find all possible unique subsets.
+    vector<vector<int>> AllSubsets(vector<int> arr, int n){
+        vector<vector<int>> ans;
+        vector<int> ds;
+        sort(arr.begin(), arr.end());
+        findAllSubsets(0, arr, ds, ans);
+        return ans;
+    }
+};
