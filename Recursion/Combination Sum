@@ -3,7 +3,7 @@ public:
     
     void FindComb(int index, vector<int> &candidates, int target, vector<vector<int>> &ans, vector<int> &ds){
         if(target == 0){
-            sort(ans.begin(), ans.end());
+            //sort(ans.begin(), ans.end());
             ans.push_back(ds);
             return;
         }
@@ -21,7 +21,7 @@ public:
     vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
         vector<vector<int>> ans;
         vector<int> ds;
-        sort(candidates.begin(), candidates.end());
+        //sort(candidates.begin(), candidates.end());
         FindComb(0, candidates, target, ans, ds);
         return ans;
     }
