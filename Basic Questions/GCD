@@ -12,3 +12,20 @@ class Solution{
 	      
 	} 
 };
+
+
+
+//ANOTHER WAY
+class Solution{
+	public:
+    int gcd(int A, int B) { 
+        int rem;
+        while(1){
+            rem = A % B;
+            A = B;
+            B = rem;
+            if(rem == 0)
+                return A;
+        }
+} 
+};
