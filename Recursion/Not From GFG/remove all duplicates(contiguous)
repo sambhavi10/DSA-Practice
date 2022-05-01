@@ -1,0 +1,19 @@
+class Solution{
+public:
+
+	string removeDuplicates(string str){
+	    
+	    if(str.length() == 0)
+	        return " ";
+	        
+	    char ch = str[0];
+	    string rest = removeDuplicates(str.substr(1));
+	    if(ch == rest[0])
+	        return rest;
+	    return (ch + rest);
+	}
+	
+	string FindDuplicates(string str) {
+	    removeDuplicates(str);
+	}
+};
