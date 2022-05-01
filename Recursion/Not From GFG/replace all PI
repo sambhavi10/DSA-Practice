@@ -1,0 +1,31 @@
+#include <iostream>
+#include<bits/stdc++.h>
+using namespace std;
+
+void replacePI(string s){
+    string rest = "";
+    if(s == "")
+        return;
+    if(s[0] == 'p' && s[1] == 'i'){
+        cout << "3.14";
+        rest =  s.substr(2);
+        replacePI(rest);
+    }
+    else{
+        cout << s[0];
+        rest = s.substr(1);
+        replacePI(rest);
+    }
+}
+
+int main() {
+    int t;
+    cin >> t;
+    while(t > 0){
+	    string s;
+	    cin >> s;
+	    replacePI(s);
+	    cout << endl;
+    }
+	return 0;
+}
