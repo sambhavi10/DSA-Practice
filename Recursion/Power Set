@@ -1,0 +1,26 @@
+class Solution{
+	public:
+	
+	    void PowerSetFunction(string s, string ans, vector<string> &result){
+	        
+            if(ans == "" && s.length() == 0)
+                return;
+		    if(s.length() == 0){
+		        result.push_back(ans);
+		        return;
+		    }
+		    char ch = s[0];
+		    string rest = s.substr(1);
+		    PowerSetFunction(rest, ans, result);
+		    PowerSetFunction(rest, ans+ch, result);
+
+	    }
+	
+		vector<string> AllPossibleStrings(string s){
+		    string ans = "";
+		    vector<string> result;
+		    PowerSetFunction(s, ans, result);
+		    sort(result.begin(), result.end());
+		    return result;
+		}
+};
