@@ -1,0 +1,51 @@
+class Solution{
+    public:
+    
+    void RatInAMaze(int i, int j, vector<vector<int>> &m, int n, vector<string> &ans, string move, vector<vector<int>> &visited ){
+        
+        if(i == n-1 && j == n-1){
+            ans.push_back(move);
+            return;
+        }
+        
+        //DOWN 
+        if(i+1<n && !visited[i+1][j] && m[i+1][j] == 1){
+            visited[i][j] = 1;
+            RatInAMaze(i+1, j, m, n, ans, move+'D', visited);
+            visited[i][j] = 0; //coming back, for new path
+        }
+        
+        //LEFT
+        if( j-1>=0 && !visited[i][j-1] && m[i][j-1] == 1){
+            visited[i][j] = 1;
+            RatInAMaze(i, j-1, m, n, ans, move+'L', visited);
+            visited[i][j] = 0;
+        }
+        
+        //RIGHT
+        if(j+1<n && !visited[i][j+1] && m[i][j+1] == 1){
+            visited[i][j] = 1;
+            RatInAMaze(i, j+1, m, n, ans, move+'R', visited);
+            visited[i][j] = 0;
+        }
+        
+        //UP
+        if(i-1>=0 && !visited[i-1][j] && m[i-1][j] == 1){
+            visited[i][j] = 1;
+            RatInAMaze(i-1, j, m, n, ans, move+'U', visited);
+            visited[i][j] = 0;
+        }
+        
+    }
+    
+    
+    
+    vector<string> findPath(vector<vector<int>> &m, int n) {
+        vector<string> ans;
+        vector<vector<int>> visited(n, vector<int> (n, 0));
+        if(m[0][0] == 1)
+            RatInAMaze(0, 0, m, n, ans, "", visited);
+            return ans;  
+        
+    }
+};
