@@ -1,0 +1,42 @@
+//BRUTE FORCE - O(N^2)
+
+class Solution {
+  public:
+    // Function to return the position of the first repeating element.
+    int firstRepeated(int arr[], int n) {
+        for(int i = 0; i < n; i++){
+            for(int j = i+1; j < n; j++){
+                if(arr[i] == arr[j])
+                    return i+1;
+            }
+        }
+        return -1;
+    }
+    
+    
+        
+//OPTIMIZED - O(N)
+class Solution {
+  public:
+
+int firstRepeated(int arr[], int n) {
+        int N = 1e6+1;
+        int ind[N];
+        int currMinInd = INT_MAX;
+        for(int i = 0; i< N; i++){
+            ind[i] = -1;
+        }
+        
+        for(int i = 0; i < n; i++){
+            if(ind[arr[i]] != -1)
+                currMinInd = min(currMinInd, ind[arr[i]]);
+            else 
+                 ind[arr[i]] = i;
+
+        }
+        if(currMinInd == INT_MAX)
+            return -1;
+        return currMinInd+1;
+    }
+    
+};
