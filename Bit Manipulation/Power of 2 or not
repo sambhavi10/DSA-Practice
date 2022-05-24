@@ -1,0 +1,29 @@
+class Solution{
+    public:
+    //GENERIC CODE
+    bool isPowerofTwo(long long n){
+        int rem;
+        if (n == 0)
+            return false;
+        while(n != 1){
+            
+            rem = n % 2;
+            if(rem != 0){
+                return false;
+            }
+            n = n / 2;
+        }
+        return true;
+    }
+    
+    
+    
+     
+    //Function to check if given number n is a power of two.
+    //BIT-MANIPULATION CODE
+    //N & N-1 ALWAYS GIVES 0 FOR POWERS OF 2
+    bool isPowerofTwo(long long n){
+        if(n == 0)
+            return 0;
+        return ((n & n-1) == 0);
+    }
