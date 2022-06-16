@@ -1,0 +1,36 @@
+
+//PASSES 10000/100100 TEST CASES
+//RECURSIVE SOLUTION
+class Solution{
+public:	
+	
+	bool flag = false;
+    void checkPalindrome(string s, int start, int end, int n){
+    
+        if(s.length() == 2){
+            if(s[0] == s[1]){
+                flag = true;
+            }
+            return;
+                
+        }
+       
+        if(s.length() == 1){
+            flag = true;
+            return;
+        }
+    
+        if(s[0] == s[n-1]){
+            string rest = s.substr(1,n-2);
+            checkPalindrome(rest, 1, n-2, n-2);
+        
+        }
+    }
+	
+	int isPalindrome(string S){
+	    int n = S.length();
+	    checkPalindrome(S, 0, n-1, n);
+        return flag;
+	}
+
+};
