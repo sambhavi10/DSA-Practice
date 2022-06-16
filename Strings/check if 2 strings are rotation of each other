@@ -1,0 +1,17 @@
+class Solution{
+    
+    public:
+    //Function to check if two strings are rotations of each other or not.
+    //LOGIC - concat one string twice and check if the second is a substring of the concatenated one
+    bool areRotations(string s1,string s2){
+        int n = s1.length();
+        string newStr = s1 + s1;
+        string s;
+        for(int i=0;i<2*n;i++){
+            string s = newStr.substr(i, n);
+            if(s2.length() == n && s == s2)
+                return true;
+        }
+        return false;
+    }
+};
