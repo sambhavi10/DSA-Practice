@@ -1,0 +1,15 @@
+
+//User function Template for C++
+
+void reverse(string str){
+   string s = ""; 
+    if(str.length() == 0)
+        return;
+    string rest = str.substr(1);
+    reverse(rest);
+    cout << str[0];
+}
+
+string reverseWord(string str){
+    reverse(str);
+}
