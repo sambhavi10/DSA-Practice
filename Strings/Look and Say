@@ -1,0 +1,39 @@
+class Solution{
+    
+  public:
+    string lookandsay(int n) {
+        
+        string ans, temp = "";
+        
+        if(n == 1)
+            return "1";
+        if(n == 2)
+            return "11";
+            
+        string s = "11";
+        for(int i=3;i<=n;i++){
+            s += '/';
+            int count = 1; 
+            for(int j = 1; j < s.length(); j++){
+                
+                if(s[j-1] == s[j]){
+                    count++;
+                    
+                }
+                else{
+                    
+                    temp += to_string(count);
+                    temp += s[j-1];
+                    count = 1;
+                }   
+            }
+            s = temp;
+            
+            //empty the string temp, before the next iteration
+            temp = "";
+            //ans += temp;
+        } 
+         return s;
+    }
+   
+};
