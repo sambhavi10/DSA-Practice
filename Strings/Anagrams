@@ -1,0 +1,24 @@
+//VERY SIMPLE
+//MULTIPLE APPROACHES POSSIBLE
+
+class Solution{
+    public:
+    //Function is to check whether two strings are anagram of each other or not.
+    bool isAnagram(string a, string b){
+        int ana1=0, ana2=0;
+        int n = a.length();
+        int m = b.length();
+        
+        if(n != m)
+            return false;
+        for(int i = 0; i < n; i++){
+            ana1 += (int)a[i];
+            ana2 += (int)b[i];
+        }
+        
+        if(ana1+ana2 == 2*ana1 && ana1+ana2 == 2*ana2)
+            return true;
+        else
+            return false;
+    }
+};
