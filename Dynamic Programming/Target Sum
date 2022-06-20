@@ -1,0 +1,41 @@
+class Solution {
+  public:
+    int findTargetSumWays(vector<int>&A ,int target) {
+        
+        int sum = 0;
+        //int m = INT_MAX;
+        int n = A.size();
+        for(int i=0;i<n;i++){
+            sum += A[i];
+        }
+        
+        //required sum of S1 = (diff+sum)/2
+        if((sum + target) % 2 != 0)
+          return 0;
+        int S1 = (target + sum) / 2;
+        
+        int t[n+1][S1+1];
+       
+        for(int i=0;i<n+1;i++){
+            for(int j=0;j<S1+1;j++){
+                if(j==0)
+                    t[i][j] = 1;
+                else
+                    t[i][j] = 0;
+            }
+        }
+        
+        for(int i=1;i<n+1;i++){
+            for(int j=0;j<S1+1;j++){//make sure to start with 0, 
+            //DO NOT FORGET THIS WHEN YOU CONSIDER ARRAY ELEMENTS WITH 0 VALUE
+                if(A[i-1] <= j)
+                    t[i][j] = t[i-1][j-A[i-1]] + t[i-1][j];
+                else
+                    t[i][j] = t[i-1][j];
+            }
+        }
+        
+        return t[n][S1];
+    }
+
+};
