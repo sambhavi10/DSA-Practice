@@ -1,0 +1,23 @@
+
+class Solution{
+    public:
+    //Function to delete a node without any reference to head pointer.
+    void deleteNode(Node *del){
+       
+       Node* temp = del;
+       Node* t = NULL;
+       
+       //right of del node
+       // copy all the values, shifted by one to the left
+       //save the second last node, to point to null, at last
+       while(temp->next != NULL){
+           int value = temp->next->data;
+           temp->data = value;
+           t = temp;
+           temp = temp->next;
+       }
+       t->next = NULL;
+       
+    }
+
+};
