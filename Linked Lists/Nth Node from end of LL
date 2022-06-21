@@ -1,0 +1,25 @@
+//MODIFYING PROBLEM -> LENGTH OF LINKED LIST IS NOT GIVEN
+
+
+int getNthFromLast(Node *head, int n){
+    
+    //optimized code
+    //lets suppose size of LL is not given
+    Node * fast = head;
+    Node * slow = head;
+    
+    
+    for(int i=0;i<n;i++){
+        if(fast != NULL)
+            fast = fast->next;
+        else
+            return -1;
+    }
+    
+    while(fast != NULL){
+        fast = fast->next;
+        slow = slow->next;
+    }
+    return slow->data;
+       
+}
