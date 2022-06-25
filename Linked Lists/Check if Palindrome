@@ -1,0 +1,47 @@
+
+class Solution{
+  public:
+  
+    struct Node* reverseList(struct Node *head){
+        Node* d = NULL;
+        Node* dummy = d;
+        Node* nex;
+        while(head != NULL){
+            nex = head->next;
+            head->next = d;
+            d = head;
+            head = nex;
+            
+        }
+        return d;
+    }
+    
+  
+    //Function to check whether the list is palindrome.
+    bool isPalindrome(Node *head){
+        Node* slow = head;
+        Node* fast = head;
+       // Node * temp = slow;
+        
+        while(fast->next != NULL && fast->next->next != NULL){
+            //temp = slow;
+            slow = slow->next;
+            fast = fast->next->next;
+        }
+        
+            Node* dummy = reverseList(slow->next); 
+            slow = dummy;
+      
+            fast = head;
+            while(slow != NULL){
+                if(slow->data != fast->data)
+                    return false;
+                slow = slow->next;
+                fast = fast->next;
+                
+            }
+            return true;
+            
+        
+    }
+};
