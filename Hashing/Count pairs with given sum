@@ -1,0 +1,34 @@
+
+//O(N) hashmaps solution
+
+class Solution{   
+public:
+    int getPairsCount(int arr[], int n, int k) {
+        
+        //store number and freq
+        unordered_map<int, int> mp;
+        int count = 0;
+        
+        //calculating frequencies, first iteration
+        for(int i=0;i<n;i++){
+            if(mp.find(arr[i]) != mp.end()){
+                //found
+                mp[arr[i]]++;
+            }
+            else{
+                //not found, insert in map, freq assign to 1
+                mp[arr[i]] = 1;
+            }
+        }
+        //second iteration, to find pairs that sum to k
+         for(int i=0;i<n;i++){
+            count += mp[k-arr[i]];
+            
+            //for excluding the number itself, n numbers, will give n-1 pairs considering 1 number
+            if(k-arr[i] == arr[i])
+                count--;
+        }
+        
+        return count/2;
+    }
+};
