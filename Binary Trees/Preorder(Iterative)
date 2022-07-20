@@ -1,1 +1,27 @@
 
+class Solution{
+    public:
+    vector<int> preOrder(Node* root){
+        
+        stack<Node*> st;
+        vector<int> ans;
+        
+        if(root == NULL)
+            return ans;
+        
+        st.push(root);
+        while(!st.empty()){
+            
+            Node* topnode = st.top(); //remember this, dont push root->right 
+            ans.push_back(topnode->data);
+            st.pop();
+            if(topnode->right != NULL)
+                st.push(topnode->right);
+            if(topnode->left != NULL)
+                st.push(topnode->left);
+            
+        }
+        
+        return ans;
+    }
+};
