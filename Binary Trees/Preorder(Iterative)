@@ -1,4 +1,7 @@
 
+//REMEMBER
+//USE STACK AND POP ROOT NODE EVERYTIME AFTER PUSHING RIGHT, LEFT CHILD
+
 class Solution{
     public:
     vector<int> preOrder(Node* root){
