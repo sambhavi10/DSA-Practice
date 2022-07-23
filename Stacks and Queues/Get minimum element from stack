@@ -1,0 +1,34 @@
+
+//MIN STACK
+// 2 STACKS - O(2N)
+
+class Solution{
+    int minEle;
+    stack<int> s;
+    stack<int> ss;
+    public:
+    
+        int getMin(){
+            if(ss.empty())
+                return -1; 
+            return ss.top();  
+        }
+
+        int pop(){
+            if(s.empty())
+                return -1;
+            
+            int ele = s.top();
+            s.pop();
+            
+            if(ele == ss.top())
+                ss.pop();
+            return ele;
+        }
+
+        void push(int x){
+            s.push(x);
+            if(ss.empty() || x <= ss.top())
+                ss.push(x);
+        }
+};
