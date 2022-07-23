@@ -1,0 +1,22 @@
+
+//REVISE
+//VERY CONCEPTUAL
+//HAD A HARD TIME, EVEN TO UNDERSTAND
+
+int Solution::solve(vector<int> &A, int B) {
+    
+    int xr = 0;
+    int count = 0;
+    unordered_map<int, int> mp;
+    
+    for(int i = 0 ; i < A.size() ; i++){
+        xr = xr ^ A[i];
+        if(xr == B)
+            count++;
+        int y = xr ^ B;
+        if(mp.find(y) != mp.end())
+            count += mp[y];
+        mp[y] += 1;
+    }
+    return count;
+}
