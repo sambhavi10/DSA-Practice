@@ -1,0 +1,33 @@
+
+//REVISE LINES 10-15
+
+class Solution {
+  public:
+    // Function to detect cycle in an undirected graph.
+        bool DFSCycleDetect(int i, int parent, vector<int> adj[], vector<int> &visited){
+        visited[i] = 1;
+        for(auto it: adj[i]){
+            if(!visited[it]){
+                if(DFSCycleDetect(it, i, adj, visited))
+                    return true; //go to previous function call(THIS PART REVISE)
+            }
+                else if(it != parent && visited[it])
+                    return true;
+              
+        }
+        return false;
+    }
+  
+    public:
+    // Function to detect cycle in a directed graph.
+    bool isCycle(int V, vector<int> adj[]) {
+        vector<int> visited(V, 0);
+        for(int i = 0; i < V; i++){
+            if(!visited[i]){
+                if(DFSCycleDetect(i, -1, adj, visited))
+                    return true;
+            }
+        }
+        return false;
+    }
+}; 
