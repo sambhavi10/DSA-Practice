@@ -1,5 +1,7 @@
 class Solution {
 public:
+
+    //THIS FUNCTION WILL RETURN, IF BIPARTITE OR NOT, FOR ONE WHOLE CONNECTED COMPONENT
     bool bipartiteBfs(int i, vector<vector<int>>& graph, vector<int> &color){
                
         queue<int> Q;
