@@ -1,0 +1,39 @@
+class Solution {
+public:
+    bool bipartiteBfs(int i, vector<vector<int>>& graph, vector<int> &color){
+               
+        queue<int> Q;
+        Q.push(i);
+        while(!Q.empty()){
+            auto node = Q.front();
+            Q.pop();
+            for(auto it: graph[node]){
+                if(color[it] != -1){
+                    if(color[it] == color[node])
+                        return false;
+                }
+                else{
+                    //color kero
+                    color[it] = 1-color[node];
+                    Q.push(it);
+                }
+            }  
+        }
+        return true;
+    }
+    bool isBipartite(vector<vector<int>>& graph) {
+        
+        int n = graph.size();
+ 
+        vector<int> color(n, -1);
+        
+        //for all connected components
+        for(int i=0;i<n;i++){
+            if(color[i] == -1){
+                if(!bipartiteBfs(i, graph, color))
+                    return false;
+            }
+        }
+     return true;
+    }
+};
