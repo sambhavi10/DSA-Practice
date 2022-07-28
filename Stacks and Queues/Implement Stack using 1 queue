@@ -1,0 +1,36 @@
+//1 queue solution
+class MyStack {
+public:
+    queue<int> q;
+    MyStack() {
+        
+    }
+    void push(int x) {
+       
+        q.push(x);
+        
+        //pop and push back for one less than size times
+        int num = q.size() - 1; 
+        while(num > 0){
+            q.push(q.front());
+            q.pop();
+            num--;
+        }
+        
+    }
+    int pop() {
+        if(q.empty())
+            return -1;
+        int n = q.front();
+        q.pop();
+        return n;
+    }
+    
+    int top() {
+        return q.front();
+    }
+    
+    bool empty() {
+        return q.empty();
+    }
+};
