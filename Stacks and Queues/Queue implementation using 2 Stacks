@@ -1,6 +1,8 @@
 
 //INPUT AND OUTPUT STACK
 
+//TC -> O(1) push; O(1) amortized pop
+
 class Queue {
     stack<int> input, output;
 public:
