@@ -1,0 +1,25 @@
+class Solution{   
+public:
+    long maximumSumSubarray(int K, vector<int> &Arr , int N){
+        // code here 
+        //Sliding Window 
+        int i = 0, j = 0;
+        long sum = 0;
+        long maxSum = INT_MIN;
+        while(j < N){
+            sum += Arr[j];
+            if(j-i+1 < K){
+                j++;
+            }
+            else if(j-i+1 == K){
+                maxSum = max(sum, maxSum);
+                sum -= Arr[i];
+                
+                i++;
+                j++;
+            }
+        }
+        
+        return maxSum;
+    }
+};
