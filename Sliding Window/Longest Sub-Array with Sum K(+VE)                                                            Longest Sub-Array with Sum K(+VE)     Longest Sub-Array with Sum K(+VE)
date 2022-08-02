@@ -1,0 +1,30 @@
+
+//WORKS FOR ONLY POSITIVE ARRAYS
+
+class Solution{
+    public:
+    int lenOfLongSubarr(int A[],  int N, int K){ 
+        
+        int maxLen = 0;
+        int currLen = 0;
+        int i=0, j=0;
+        int sum = 0;
+        while(j < N){
+    
+            sum += A[j];
+            while(sum > K){
+                sum -= A[i];
+                i++;
+            }
+            if(sum == K){
+                currLen = j-i+1;
+                maxLen = max(currLen, maxLen);
+            }
+            
+            j++;
+        
+        }
+        return maxLen;
+    }
+
+};
