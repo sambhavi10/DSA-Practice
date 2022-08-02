@@ -1,0 +1,48 @@
+class Solution {
+public:
+    vector<vector<int>> threeSum(vector<int>& nums) {
+        
+        
+        int n = nums.size();
+        vector<vector<int>> ans;
+    
+        sort(nums.begin(), nums.end());
+        
+        for(int i=0;i<n-2;i++){
+            
+            //avoiding duplicate a
+            if(i == 0 || (i > 0 && nums[i] != nums[i-1])){ //remember this
+            
+            int low = i+1;
+            int high = n-1;
+            int reqSum = -(nums[i]);
+            while(low < high){
+                if(nums[low] + nums[high] == reqSum){
+                    
+                    vector<int> triplets(3,0);
+                    triplets[0] = nums[i];
+                    triplets[1] = nums[low];
+                    triplets[2] = nums[high];
+                    ans.push_back(triplets);
+                   
+                    while(low < high && nums[low] == nums[low+1])
+                        low++;
+                    while(high > low && nums[high] == nums[high-1])
+                        high--;
+                    
+                    low++;high--; //moving to the non duplicate element
+                    
+                }
+                else{
+                    if(nums[low] + nums[high] < reqSum )
+                        low++;
+                    else if(nums[low] + nums[high] > reqSum)
+                        high--;
+                }
+            }
+        }
+            
+    }
+        return ans;
+    }
+};
