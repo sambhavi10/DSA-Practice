@@ -1,0 +1,81 @@
+class LRUCache {
+public:
+    
+    class node{
+        public:
+        int key;
+        int val;
+        node* next;
+        node* prev;
+        
+        node(int key, int val){
+            this->val = val;
+            this->key = key;
+        }
+    };
+    
+    node* head = new node(0, 0);
+    node* tail = new node(0, 0);
+ 
+    
+    int cap;
+    unordered_map<int, node*> mp;
+    
+    //initial class
+    LRUCache(int capacity) {
+        cap = capacity;
+        tail->prev = head;
+        head-> next = tail;
+        head->prev = NULL;
+        tail-> next = NULL;
+        
+    }
+    
+    void addNode(node* newnode){
+        node* temp = head->next;
+        head->next = newnode;
+        temp->prev = newnode;
+        newnode-> prev = head;
+        newnode-> next = temp;
+    }
+    
+    void deleteNode(node *deleteMe){
+        node* temp1 = deleteMe-> prev;
+        node* temp2 = deleteMe -> next;
+        //delete(deleteMe);
+        temp1->next = temp2;
+        temp2->prev = temp1;
+    }
+    
+    int get(int key) {
+        if(mp.find(key) != mp.end()){
+            node* resnode = mp[key]; //address will be the node(pointer)
+            int res = resnode->val; //to be returned
+            mp.erase(key); // erase old value from hashmap
+            deleteNode(resnode);
+            addNode(resnode);
+            mp[key] = head->next; //new address store
+            return res;
+        }
+        return -1;
+    }
+    
+    void put(int key, int value) {
+        if(mp.find(key) != mp.end()){
+            node* existingNode = mp[key];
+            mp.erase(key);
+            deleteNode(existingNode);
+        }
+        if(mp.size() == cap){
+            //deleted least recently used, before tail
+            node *toBeDeleted = tail->prev;
+            mp.erase(toBeDeleted->key);
+            deleteNode(toBeDeleted);   
+        }
+        
+        //now capacity not full
+        addNode(new node(key, value));
+        mp[key] = head->next; //update address
+              
+    }   
+};
