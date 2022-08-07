@@ -1,0 +1,33 @@
+
+//recursive calls
+//a little complicated
+
+void insertInStack(stack<int> &s, int element){
+    
+    if(s.empty() || !s.empty() && s.top() < element ){
+        s.push(element);
+        return;
+    }
+    int top = s.top();
+    s.pop();
+    
+    //recursive call
+    insertInStack(s, element);
+    
+    //wapas aate time
+    s.push(top);
+}
+
+void SortedStack :: sort(){
+   
+    if(s.size() == 1)
+        return;
+    
+    int element = s.top();
+    s.pop();
+    
+    //recursive call
+    SortedStack :: sort();
+    insertInStack(s, element);   
+
+}
